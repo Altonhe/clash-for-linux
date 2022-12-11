@@ -1,0 +1,25 @@
+name: Cron Task
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+  schedule:
+    - cron: '5 0 */7 * *'
+
+jobs:
+  build:
+    name: Update Profile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: |
+          tagname=$(cat tagname)
+          docker build . --file Dockerfile -t altonhe/clash-for-linux:latest -t altonhe/clash-for-linux:$tagname
+          
+      - name: Push the Docker image
+        run: |
+          tagname=$(cat tagname)
+          docker push altonhe/clash-for-linux:latest
+          docker push altonhe/clash-for-linux:$tagname
