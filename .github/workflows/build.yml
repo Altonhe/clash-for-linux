@@ -9,10 +9,12 @@ on:
 
 jobs:
   build:
-    name: Update Profile
+    name: Build Image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Update clash
+        run: python build.py
       - name: Build the Docker image
         run: |
           tagname=$(cat tagname)
