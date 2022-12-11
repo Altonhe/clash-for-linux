@@ -3,7 +3,6 @@ import gzip
 import shutil
 
 def download_file(url):
-    url = f'https://ghproxy.com/{url}'
     local_filename = url.split('/')[-1]
     # NOTE the stream=True parameter below
     with requests.get(url, stream=True) as r:
@@ -29,15 +28,5 @@ with gzip.open(filename, 'rb') as f_in:
     with open('./bin/clash-linux-amd64', 'wb') as f_out:
         shutil.copyfileobj(f_in, f_out)
 
-open('./tagname.txt', 'w').write(resp.json()["tag_name"])
-
-# startdir =r'./RProxy2' 
-# file_news = startdir +'.zip' 
-# z = zipfile.ZipFile(file_news,'w',zipfile.ZIP_DEFLATED) 
-# for dirpath, dirnames, filenames in os.walk(startdir):
-#     fpath = dirpath.replace(startdir,'') 
-#     fpath = fpath and fpath + os.sep or ''
-#     for filename in filenames:
-#         z.write(os.path.join(dirpath, filename),fpath+filename)
-# z.close()
+open('./tagname', 'w').write(resp.json()["tag_name"])
 print ('build suceess')
