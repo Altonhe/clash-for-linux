@@ -59,7 +59,7 @@ unset no_proxy
 Text3="配置文件config.yaml下载成功！"
 Text4="配置文件config.yaml下载失败，退出启动！"
 # wget -q -O $Temp_Dir/clash.yaml $URL
-curl -s -o $Temp_Dir/clash.yaml $URL
+curl -L -o $Temp_Dir/clash.yaml $URL
 if_success $Text3 $Text4
 
 # 取出代理相关配置 
@@ -121,3 +121,5 @@ EOF
 echo -e "请执行以下命令加载环境变量: source /etc/profile.d/clash.sh\n"
 echo -e "请执行以下命令开启系统代理: proxy_on\n"
 
+# 卡住容器
+tail -f /dev/null

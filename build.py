@@ -3,6 +3,7 @@ import gzip
 import shutil
 
 def download_file(url):
+    url = url.replace('https://github.com', 'https://ghproxy.com/https://github.com')
     local_filename = url.split('/')[-1]
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
