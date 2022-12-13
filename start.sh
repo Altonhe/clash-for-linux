@@ -83,9 +83,11 @@ Text6="服务启动失败！"
 # 获取CPU架构  x86_64/aarch64
 get_arch=`/bin/arch`
 if [[ $get_arch =~ "x86_64" ]]; then
+	chmod +x $Server_Dir/bin/clash-linux-amd64
 	nohup $Server_Dir/bin/clash-linux-amd64 -d $Conf_Dir &> $Log_Dir/clash.log &
 	if_success $Text5 $Text6
 elif [[ $get_arch =~ "aarch64" ]]; then
+	chmod +x $Server_Dir/bin/clash-linux-armv7
 	nohup $Server_Dir/bin/clash-linux-armv7 -d $Conf_Dir &> $Log_Dir/clash.log &
 	if_success $Text5 $Text6
 else
